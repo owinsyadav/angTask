@@ -1,0 +1,54 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>Welcome to {{ mytitle }}</h1>
+</div>
+<div class="field">
+    <div class="control">
+      <input class="input is-primary" [(ngModel)]="title" type="text" placeholder="Serach any title">
+    </div>
+  </div>
+<table class="table is-bordered">
+  <thead>
+    <tr>
+      <th><abbr title="in">Index</abbr></th>
+      <th><abbr title="custom title">Title</abbr></th>
+      <th><abbr title="muurl">Url</abbr></th>
+      <th><abbr title="created">Created_at</abbr></th>
+      <th><abbr title="auth">Author</abbr></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataList.hits| customerFilter:title; let i = index" (click)="ontdClick(data)">
+      <td scope="row">{{i+1}}</td>
+      <td>{{data.title}}</td>
+      <td>{{data.url}}</td>
+      <td>{{data.created_at}}</td>
+      <td>{{data.author}}</td>
+     </tr>
+  </tbody>
+</table>
+
+<div class="modal" [ngClass]="{ 'is-active' : isModalActive }">
+    <div class="modal-background" (click)="toggleModal()"></div>
+    <div class="modal-content">
+        <table class="table is-bordered">
+            <thead>
+              <tr>
+                <th><abbr title="Lost">Title</abbr></th>
+                <th><abbr title="Goals for">Url</abbr></th>
+                <th><abbr title="Goals against">Created_at</abbr></th>
+                <th><abbr title="Goal difference">Author</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{modaltableVal.title}}</td>
+                <td>{{modaltableVal.url}}</td>
+                <td>{{modaltableVal.created_at}}</td>
+                <td>{{modaltableVal.author}}</td>
+               </tr>
+            </tbody>
+          </table>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="toggleModal()"></button>
+  </div>
